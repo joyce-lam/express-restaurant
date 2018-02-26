@@ -5,7 +5,7 @@ var path = require("path");
 var app = express();
 var PORT = 3000;
 
-var user= [];
+var users= [];
 
 
 
@@ -13,34 +13,35 @@ var user= [];
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "welcome.html"));
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "welcome.html"));
+});
+
+app.get("/api/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
+// app.get("/api/tables", function(req, res) {
+//   res.sendFile(path.join(__dirname, "reservations.html"));
 // });
 
-// app.get("/reserve", function(req, res) {
-//   res.sendFile(path.join(__dirname, "tables.html"));
-// });
-
-// app.get("/tables", function(req, res) {
-//   res.json(characters);
-// });
 
 
-// app.get("/api/:characters?", function(req, res) {
-//   var chosen = req.params.characters;
+app.get("/api/:users?", function(req, res) {
+  var chosen = req.params.users;
 
-//   if (chosen) {
-//     console.log(chosen);
+  if (chosen) {
+    console.log(chosen);
 
-//     for (var i = 0; i < characters.length; i++) {
-//       if (chosen === characters[i].routeName) {
-//         return res.json(characters[i]);
-//       }
-//     }
-//     return res.json(false);
-//   }
-//   return res.json(characters);
-// });
+    for (var i = 0; i < users.length; i++) {
+      if (chosen === uesrs[i].routeName) {
+        return res.json(users[i]);
+      }
+    }
+    return res.json(false);
+  }
+  return res.json(users);
+});
 
 
 
@@ -48,16 +49,16 @@ app.use(bodyParser.json());
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
-  var newreservation = req.body;
+  var newReservation = req.body;
   // Using a RegEx Pattern to remove spaces from newCharacter
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newreservation);
+  console.log(newReservation);
 
-  user.push(newreservation);
+  user.push(newReservation);
 
-  res.json(newreservation);
+  res.json(newReservation);
 });
 
 app.listen(PORT, function() {
