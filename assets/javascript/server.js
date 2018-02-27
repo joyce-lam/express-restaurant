@@ -14,16 +14,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "welcome.html"));
+  res.sendFile(path.join(__dirname, "../../welcome.html"));
 });
 
 app.get("/api/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "../../reserve.html"));
 });
 
-// app.get("/api/tables", function(req, res) {
-//   res.sendFile(path.join(__dirname, "reservations.html"));
-// });
+app.get("/api/reservations", function(req, res) {
+  res.sendFile(path.join(__dirname, "../../reservations.html"));
+});
 
 
 
