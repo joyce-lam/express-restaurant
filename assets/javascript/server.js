@@ -6,6 +6,7 @@ var app = express();
 var PORT = 3000;
 
 var users= [];
+var waitList= [];
 
 
 
@@ -44,11 +45,13 @@ app.get("/api/:users?", function(req, res) {
     }
     return res.json(false);
   }
-  return res.json(users);
+  return res.json({waitlist: waitList, reserves: users});    
 });
 
 
-
+// app.get("/api", function(req, res){
+//   console.log("in the get")
+// })
 
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
@@ -60,9 +63,14 @@ app.post("/api/new", function(req, res) {
 
   console.log(newReservation);
 
-  users.push(newReservation);
+  if(users.length >= 5){
+    waitList.push(newReservation)
+  }
+  else{
+    users.push({reservation: newReservation});
+  }  
+  res.json({waitlist: waitList, reserves: users});    
 
-  res.json(newReservation);
 });
 
 app.listen(PORT, function() {

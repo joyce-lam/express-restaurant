@@ -17,8 +17,8 @@
             <div class="row">
               <div class="col-md-4"></div>
             <div class="col-md-8">  
-             <a href="reserve.html"><button type="button" class="btn btn-primary">make a reservation</button>
-              <a href="welcome.html"><button type="button" class="btn btn-default">home</button>
+             <a href="/api/reserve"><button type="button" class="btn btn-primary">make a reservation</button>
+              <a href="/api/welcome"><button type="button" class="btn btn-default">home</button>
     
             </div>
         </div>
@@ -50,7 +50,9 @@
   </div>
 
   <script type="text/javascript">
+    console.log("loading things")
     $.get("/api", function(data) {
+      console.log("res data ",data)
       for (var i = 0; i < data.length; i++) {
         var wellSection = $("<div>");
         wellSection.addClass("well");
