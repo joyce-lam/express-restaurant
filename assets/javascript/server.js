@@ -25,6 +25,10 @@ app.get("/api/reservations", function(req, res) {
   res.sendFile(path.join(__dirname, "../../reservations.html"));
 });
 
+app.get("/api/welcome", function(req, res) {
+  res.sendFile(path.join(__dirname, "../../welcome.html"));
+});
+
 
 
 app.get("/api/:users?", function(req, res) {
@@ -34,7 +38,7 @@ app.get("/api/:users?", function(req, res) {
     console.log(chosen);
 
     for (var i = 0; i < users.length; i++) {
-      if (chosen === uesrs[i].routeName) {
+      if (chosen === users[i].routeName) {
         return res.json(users[i]);
       }
     }
@@ -56,7 +60,7 @@ app.post("/api/new", function(req, res) {
 
   console.log(newReservation);
 
-  user.push(newReservation);
+  users.push(newReservation);
 
   res.json(newReservation);
 });
